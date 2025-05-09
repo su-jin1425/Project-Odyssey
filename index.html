@@ -75,6 +75,47 @@
       font-weight: 400;
     }
 
+    .header-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .header-btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .header-btn-portfolio {
+      background-color: #000;
+      color: white;
+    }
+
+    .header-btn-achievements {
+      background-color: #f0f1f6;
+      color: #000;
+      border: 2px solid #000;
+    }
+
+    .header-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-btn-portfolio:hover {
+      background-color: #333;
+    }
+
+    .header-btn-achievements:hover {
+      background-color: #e5e6eb;
+    }
+
     .card-container {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -215,6 +256,18 @@
       .header h1 {
         font-size: 2rem;
       }
+      
+      .header-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      .header-btn {
+        width: 100%;
+        text-align: center;
+      }
 
       .card-container {
         grid-template-columns: 1fr;
@@ -251,6 +304,10 @@
     <div class="header">
       <h1 style="font-family:'Segoe Script', 'Comic Sans MS', cursive;">Project Odyssey</h1>
       <p>A comprehensive showcase of my diverse project collections, highlighting creativity and innovation!</p>
+      <div class="header-buttons">
+        <a href="#portfolio" class="header-btn header-btn-portfolio">View Portfolio</a>
+        <a href="#achievements" class="header-btn header-btn-achievements">My Achievements</a>
+      </div>
     </div>
     <div class="card-container">
 
