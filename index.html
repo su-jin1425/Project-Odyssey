@@ -26,7 +26,7 @@
     @font-face {
       font-family: 'Geist';
       src: url('assets/fonts/Geist-SemiBold.woff2') format('woff2');
-      font-weight: 300;
+      font-weight: 600;
       font-style: normal;
       font-display: swap;
     }
@@ -234,11 +234,59 @@
       background-color: #e5e6eb;
     }
 
+    /* 3D Counter */
+    .achievements-counter {
+      display: flex;
+      justify-content: space-around;
+      margin: 4rem auto;
+      max-width: 800px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+      backdrop-filter: blur(5px);
+    }
+
+    .counter-item {
+      text-align: center;
+      transform: perspective(1000px) rotateY(10deg);
+      transition: all 0.5s ease;
+      padding: 2rem;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      background: white;
+      border-radius: 16px;
+      width: 180px;
+    }
+
+    .counter-item:hover {
+      transform: perspective(1000px) rotateY(0);
+    }
+
+    .counter-number {
+      font-size: 2.5rem;
+      font-weight: 500;
+      color: #000;
+      margin-bottom: 0.5rem;
+    }
+
+    .counter-title {
+      font-size: 1rem;
+      color: #666;
+    }
+
     /* Tablet */
     @media (max-width: 1024px) {
       .card-container {
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
+      }
+      .achievements-counter {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      
+      .counter-item {
+        width: 150px;
       }
     }
 
@@ -298,8 +346,19 @@
       }
 
       .header-btn-portfolio {
-      margin-top: 1rem;
-    }
+        margin-top: 1rem;
+      }
+
+      .achievements-counter {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+      
+      .counter-item {
+        width: 130px;
+        padding: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -313,28 +372,34 @@
         <a href="#achievements" class="header-btn header-btn-achievements">My Achievements</a>
       </div>
     </div>
-    <div class="card-container">
-
-      <!-- <div class="card">
-        <img src="#" alt="Banner 2" class="banner-img">
-        <div class="profile-img">
-          <img src="#" alt="Channel 2">
+    <!-- 3D Counter Section -->
+    <div id="achievements" class="achievements-counter">
+        <div class="counter-item">
+          <div class="counter-number">12</div>
+          <div class="counter-title">Projects</div>
         </div>
-        <h3>#</h3>
-        <p>#</p>
-        <div class="button-container">
-          <a href="#" class="btn btn-primary">Try Now</a>
-          <a href="#" class="btn btn-secondary">View Code</a>
+        <div class="counter-item">
+          <div class="counter-number">5</div>
+          <div class="counter-title">Awards</div>
         </div>
-      </div> -->
+        <div class="counter-item">
+          <div class="counter-number">8</div>
+          <div class="counter-title">Certifications</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-number">3</div>
+          <div class="counter-title">Publications</div>
+        </div>
+    </div>
 
+    <div id="portfolio" class="card-container">
       <div class="card">
         <img src="assets/image/banner/b1.png" alt="Banner 1" class="banner-img">
         <div class="profile-img">
           <img src="assets/image/profile/p1.png" alt="Profile 1">
         </div>
-        <h3>Project 1</h3>
-        <p>Description</p>
+        <h3>AI Research Assistant</h3>
+        <p>A smart research tool that helps students and professionals gather information efficiently using advanced natural language processing.</p>
         <div class="button-container">
           <a href="#" class="btn btn-primary">Try Now</a>
           <a href="#" class="btn btn-secondary">View Code</a>
@@ -346,7 +411,7 @@
           <img src="assets/image/profile/p2.png" alt="Profile 2">
         </div>
         <h3>StockNet Prediction</h3>
-        <p>StockNet Predict blends Multiple Learning Models with real-time data to decode the stock market’s secrets and predict its next move.</p>
+        <p>StockNet Predict blends Multiple Learning Models with real-time data to decode the stock market's secrets and predict its next move.</p>
         <div class="button-container">
           <a href="https://colab.research.google.com/drive/1i8Bbcu44d4A_ZFAOYcVY_x9yjq78iiU7?usp=sharing" target="_blank" class="btn btn-primary">Try Now</a>
           <a href="https://github.com/su-jin1425/Stock-Market-Prediction-Model" target="_blank" class="btn btn-secondary">View Code</a>
@@ -357,8 +422,8 @@
         <div class="profile-img">
           <img src="assets/image/profile/p3.png" alt="Profile 3">
         </div>
-        <h3>Project 2</h3>
-        <p>Description</p>
+        <h3>Smart Home Control</h3>
+        <p>An integrated IoT system enabling users to control home devices remotely through a user-friendly dashboard with automated routines.</p>
         <div class="button-container">
           <a href="https://codeathon-caterpillar.vercel.app" target="_blank" class="btn btn-primary">Try Now</a>
           <a href="https://github.com/su-jin1425/Codeathon-Caterpillar" target="_blank" class="btn btn-secondary">View Code</a>
@@ -496,154 +561,195 @@
         </div>
     </div>
   </div>
-</body>
-<!-- Aurora -->
-<script>
-  const auroraChatToggle = document.getElementById('aurora-chat-toggle');
-const auroraChatContainer = document.getElementById('aurora-chat-container');
-const auroraChatClose = document.getElementById('aurora-chat-close');
-const auroraChatMessages = document.getElementById('aurora-chat-messages');
-const auroraChatInput = document.getElementById('aurora-chat-input');
-const auroraChatSend = document.getElementById('aurora-chat-send');
+  
+  <!-- Scripts -->
+  <script>  
+    // Animation for counters
+    window.addEventListener('DOMContentLoaded', () => {
+      const counters = document.querySelectorAll('.counter-number');
+      
+      const animateCounter = (counter, target) => {
+        let current = 0;
+        const duration = 1500; // 1.5 seconds
+        const steps = Math.ceil(duration / 30);
+        const step = target / steps;
+        
+        const timer = setInterval(() => {
+          current += step;
+          
+          if (current >= target) {
+            clearInterval(timer);
+            counter.textContent = target;
+          } else {
+            counter.textContent = Math.floor(current);
+          }
+        }, 30);
+      };
+      
+      // Intersection Observer for counters
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const target = parseInt(entry.target.textContent);
+            animateCounter(entry.target, target);
+            counterObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      counters.forEach(counter => {
+        counterObserver.observe(counter);
+      });
+    });
+  </script>
 
-auroraChatToggle.addEventListener('click', toggleAuroraChat);
-auroraChatClose.addEventListener('click', toggleAuroraChat);
-auroraChatSend.addEventListener('click', sendAuroraMessage);
-auroraChatInput.addEventListener('keypress', handleAuroraEnter);
-auroraChatInput.addEventListener('input', adjustAuroraInputHeight);
-auroraChatMessages.addEventListener('click', function(event) {
-    if (event.target.classList.contains('aurora-link')) {
-        handleAuroraLinkClick(event);
+  <!-- Aurora Chat Script -->
+  <script>
+    const auroraChatToggle = document.getElementById('aurora-chat-toggle');
+    const auroraChatContainer = document.getElementById('aurora-chat-container');
+    const auroraChatClose = document.getElementById('aurora-chat-close');
+    const auroraChatMessages = document.getElementById('aurora-chat-messages');
+    const auroraChatInput = document.getElementById('aurora-chat-input');
+    const auroraChatSend = document.getElementById('aurora-chat-send');
+
+    auroraChatToggle.addEventListener('click', toggleAuroraChat);
+    auroraChatClose.addEventListener('click', toggleAuroraChat);
+    auroraChatSend.addEventListener('click', sendAuroraMessage);
+    auroraChatInput.addEventListener('keypress', handleAuroraEnter);
+    auroraChatInput.addEventListener('input', adjustAuroraInputHeight);
+    auroraChatMessages.addEventListener('click', function(event) {
+        if (event.target.classList.contains('aurora-link')) {
+            handleAuroraLinkClick(event);
+        }
+    });
+
+    function toggleAuroraChat() {
+        const isVisible = auroraChatContainer.style.display === 'block';
+        auroraChatContainer.style.display = isVisible ? 'none' : 'block';
+        auroraChatToggle.style.display = isVisible ? 'flex' : 'none';
     }
-});
 
-function toggleAuroraChat() {
-    const isVisible = auroraChatContainer.style.display === 'block';
-    auroraChatContainer.style.display = isVisible ? 'none' : 'block';
-    auroraChatToggle.style.display = isVisible ? 'flex' : 'none';
-}
-
-function sendAuroraMessage() {
-    const message = auroraChatInput.value.trim();
-    if (message) {
-        addAuroraMessage(message, 'sent');
-        auroraChatInput.value = '';
-        adjustAuroraInputHeight();
-        setTimeout(() => {
-            const response = getAuroraResponse(message);
-            addAuroraMessage(response, 'received');
-        }, 1000);
+    function sendAuroraMessage() {
+        const message = auroraChatInput.value.trim();
+        if (message) {
+            addAuroraMessage(message, 'sent');
+            auroraChatInput.value = '';
+            adjustAuroraInputHeight();
+            setTimeout(() => {
+                const response = getAuroraResponse(message);
+                addAuroraMessage(response, 'received');
+            }, 1000);
+        }
     }
-}
 
-function handleAuroraEnter(e) {
-    if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        sendAuroraMessage();
+    function handleAuroraEnter(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendAuroraMessage();
+        }
     }
-}
 
-function adjustAuroraInputHeight() {
-    auroraChatInput.style.height = 'auto';
-    auroraChatInput.style.height = auroraChatInput.scrollHeight + 'px';
-}
-
-function addAuroraMessage(message, type) {
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('aurora-chat-message', type);
-    messageElement.innerHTML = message;
-    auroraChatMessages.appendChild(messageElement);
-    auroraChatMessages.scrollTop = auroraChatMessages.scrollHeight;
-}
-
-function getAuroraResponse(message) {
-    const responses = [
-        `I've analyzed your query. You might find this information helpful: <a href='#' class='aurora-link' data-href='https://aurora-model.vercel.app'>Explore Further</a>`,
-        `Interesting question! I've compiled some relevant data here: <a href='#' class='aurora-link' data-href='https://aurora-model.vercel.app'>View Analysis</a>`,
-        `Based on your input, I recommend checking out this resource: <a href='#' class='aurora-link' data-href='https://aurora-model.vercel.app'>Learn More</a>`,
-        `I've processed your request. This link might provide additional context: <a href='#' class='aurora-link' data-href='https://aurora-model.vercel.app'>Detailed Insights</a>`,
-        `Your inquiry is intriguing. I've found some relevant information here: <a href='#' class='aurora-link' data-href='https://aurora-model.vercel.app'>Discover More</a>`
-    ];
-    return responses[Math.floor(Math.random() * responses.length)];
-}
-
-function handleAuroraLinkClick(event) {
-    event.preventDefault();
-    const href = event.target.getAttribute('data-href');
-    if (href) {
-        window.open(href, '_blank');
+    function adjustAuroraInputHeight() {
+        auroraChatInput.style.height = 'auto';
+        auroraChatInput.style.height = auroraChatInput.scrollHeight + 'px';
     }
-}
-</script>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
-.aurora-chat-wrapper {
-    --aurora-bg: #1A1A2E;
-    --aurora-surface: #16213E;
-    --aurora-primary: #0F3460;
-    --aurora-secondary: #E94560;
-    --aurora-text: #FFFFFF;
-    --aurora-input: #0F3460;
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 9999;
-}
+    function addAuroraMessage(message, type) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('aurora-chat-message', type);
+        messageElement.innerHTML = message;
+        auroraChatMessages.appendChild(messageElement);
+        auroraChatMessages.scrollTop = auroraChatMessages.scrollHeight;
+    }
 
-.aurora-chat-wrapper * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    function getAuroraResponse(message) {
+        const responses = [
+            `I've analyzed your query. You might find this information helpful: <a href='#' class='aurora-link' data-href='https://aurora-model.vercel.app'>Explore Further</a>`,
+            `Interesting question! I've compiled some relevant data here: <a href='#' class='aurora-link' data-href='https://aurora-model.vercel.app'>View Analysis</a>`,
+            `Based on your input, I recommend checking out this resource: <a href='#' class='aurora-link' data-href='https://aurora-model.vercel.app'>Learn More</a>`,
+            `I've processed your request. This link might provide additional context: <a href='#' class='aurora-link' data-href='https://aurora-model.vercel.app'>Detailed Insights</a>`,
+            `Your inquiry is intriguing. I've found some relevant information here: <a href='#' class='aurora-link' data-href='https://aurora-model.vercel.app'>Discover More</a>`
+        ];
+        return responses[Math.floor(Math.random() * responses.length)];
+    }
 
-.aurora-chat-toggle {
-    width: 4rem;
-    height: 4rem;
-    background: var(--aurora-primary);
-    color: var(--aurora-text);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(15, 52, 96, 0.5);
-}
+    function handleAuroraLinkClick(event) {
+        event.preventDefault();
+        const href = event.target.getAttribute('data-href');
+        if (href) {
+            window.open(href, '_blank');
+        }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
-.aurora-chat-toggle i {
-    font-size: 2rem;
-}
+    .aurora-chat-wrapper {
+        --aurora-bg: #1A1A2E;
+        --aurora-surface: #16213E;
+        --aurora-primary: #0F3460;
+        --aurora-secondary: #E94560;
+        --aurora-text: #FFFFFF;
+        --aurora-input: #0F3460;
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.6;
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 9999;
+    }
 
-.aurora-chat-toggle:hover {
-    background: var(--aurora-secondary);
-    transform: translateY(-3px);
-}
+    .aurora-chat-wrapper * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-.aurora-chat-container {
-    position: absolute;
-    bottom: calc(100% + 1rem);
-    right: 0;
-    width: 380px;
-    background: var(--aurora-surface);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    display: none;
-}
+    .aurora-chat-toggle {
+        width: 4rem;
+        height: 4rem;
+        background: var(--aurora-primary);
+        color: var(--aurora-text);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(15, 52, 96, 0.5);
+    }
 
-.aurora-chat-header {
-    background: var(--aurora-primary);
-    color: var(--aurora-text);
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+    .aurora-chat-toggle i {
+        font-size: 2rem;
+    }
 
-.aurora-chat-title {
+    .aurora-chat-toggle:hover {
+        background: var(--aurora-secondary);
+        transform: translateY(-3px);
+    }
+
+    .aurora-chat-container {
+        position: absolute;
+        bottom: calc(100% + 1rem);
+        right: 0;
+        width: 380px;
+        background: var(--aurora-surface);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        display: none;
+    }
+
+    .aurora-chat-header {
+        background: var(--aurora-primary);
+        color: var(--aurora-text);
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .aurora-chat-title {
     display: flex;
     align-items: center;
     gap: 0.5rem;
